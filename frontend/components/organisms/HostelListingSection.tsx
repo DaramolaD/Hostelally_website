@@ -28,7 +28,7 @@ const HostelListingSection = () => {
             Find Your Ideal Room
           </Heading>
 
-          <p className="text-base lg:text-xl text-start font-medium md:text-left">
+          <p className="text-base lg:text-xl text-start font-medium">
             Browse our range of hostel rooms and pick the perfect fit for your
             stay. Click to explore your options!
           </p>

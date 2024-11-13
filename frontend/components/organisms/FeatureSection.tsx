@@ -15,13 +15,13 @@ const FeatureSection = () => {
 
   return (
     <section>
-      <div className="container grid gap-9 relative bg-[#C7C7CC] mx-auto w-full py-20 pt-40 mb-10">
+      <div className="container grid gap-9 relative bg-[#C7C7CC] mx-auto w-full py-20 pt-40">
         <div className="flex flex-col text-left gap-2 md:gap-4">
           <Heading level={2} size="md" align="left" weight="medium">
             Your Space, Your Style
           </Heading>
 
-          <p className="text-base lg:text-xl text-start font-medium md:text-left">
+          <p className="text-base lg:text-xl text-start font-medium">
             Our hostels are more than just places to stay. Whether you&apos;re
             here to work, explore, or unwind, you&apos;ll find a welcoming spot
             with its own unique vibe, from vibrant city centers to peaceful
