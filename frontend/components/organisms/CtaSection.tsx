@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const CtaSection = () => {
   return (
-    <section className="bg-[#C7C7CC] py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
+    <section className="bg-[#E5E5EA] py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-11 justify-between items-center">
         <div className="flex flex-col max-w-[1000px] mx-auto gap-4 items-start">
           <Heading level={2} size="md" align="left" weight="medium">
