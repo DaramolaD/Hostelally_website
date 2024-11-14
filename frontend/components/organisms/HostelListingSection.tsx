@@ -21,8 +21,8 @@ const HostelListingSection = () => {
   });
 
   return (
-    <section>
-      <div className="container grid gap-9 relative bg-[#C7C7CC] mx-auto w-full py-16 md:py-20 md:pt-40">
+    <section className='bg-[#C7C7CC] max-w-screen-2xl mx-auto'>
+      <div className="container grid gap-9 relative w-full py-16 md:py-20 md:pt-40">
         <div className="flex flex-col text-left gap-2 md:gap-4">
           <Heading level={2} size="md" align="left" weight="medium">
             Find Your Ideal Room

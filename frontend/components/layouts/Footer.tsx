@@ -33,7 +33,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer aria-label="Footer" className="bg-[#E5E5EA] p-6">
+    <footer aria-label="Footer" className="bg-[#E5E5EA] p-6 max-w-screen-2xl mx-auto">
       <div className="container mx-auto flex flex-col justify-between items-start md:items-center gap-14 pt-10">
         {/* Company Info and Logo */}
         <div className="flex flex-col gap-4 w-full">

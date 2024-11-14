@@ -1,33 +1,19 @@
 "use client";
 import React from "react";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
+import { Form } from "../ui/form";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CustomFormField, { FormFieldType } from "./CustomFormField";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Mail, Map, Phone, User, UserRound } from "lucide-react";
+import "react-phone-number-input/style.css";
+import { Mail, Phone, UserRound } from "lucide-react";
+import { formSchema } from "@/lib/validation";
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  birthDate: z.date().optional(), // Date field
-});
-
+// Define the ContactForm component
 const ContactForm = () => {
-  // Define your form
+  // Initialize form with useForm, using zodResolver to enforce schema validation
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,25 +22,25 @@ const ContactForm = () => {
     },
   });
 
-  // Define a submit handler
+  // Define submit handler to process form values
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    console.log(values); // Handle form submission here
   }
 
   return (
     <div>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-           <CustomFormField
+          <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
-            name="name"
+            name="username"
             placeholder="John Doe"
             iconSrc={<UserRound />}
             iconAlt="user"
             label="Name"
           />
-           <CustomFormField
+          <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
             name="email"
@@ -63,8 +49,8 @@ const ContactForm = () => {
             iconAlt="email"
             label="Email"
           />
-           <CustomFormField
-            fieldType={FormFieldType.INPUT}
+          <CustomFormField
+            fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
             name="mobile"
             placeholder="+000-0000000000"
@@ -72,13 +58,11 @@ const ContactForm = () => {
             iconAlt="mobile"
             label="Mobile"
           />
-           <CustomFormField
+          <CustomFormField
             fieldType={FormFieldType.TEXTAREA}
             control={form.control}
             name="message"
             placeholder="Type in Your Message"
-            iconSrc={<Phone />}
-            iconAlt="message"
             label="Message"
           />
 

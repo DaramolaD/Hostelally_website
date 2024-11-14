@@ -2,8 +2,8 @@ import React from 'react'
 
 const HeroSection = () => {
   return (
-    <section>
-      <div className="container relative bg-[#E5E5EA] mx-auto w-full py-40 pt-44">
+    <section className='bg-[#E5E5EA] max-w-screen-2xl mx-auto'>
+      <div className="container relative w-full py-40 pt-44">
         <div className="flex flex-col w-full max-w-[735px] gap-2">
           <h1 className="text-2xl md:text-4xl lg:text-5xl font-medium !leading-snug">
             Your Home Away From Home — <br />

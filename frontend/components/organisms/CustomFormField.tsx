@@ -2,7 +2,7 @@
 import { E164Number } from "libphonenumber-js/core";
 import Image from "next/image";
 import ReactDatePicker from "react-datepicker";
-import { Control } from "react-hook-form";
+import { Control, ControllerRenderProps, FieldValues, Path } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
 
 import { Checkbox } from "../ui/checkbox";
@@ -32,9 +32,9 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
-interface CustomProps {
-  control: Control<any>;
-  name: string;
+interface CustomProps<T extends FieldValues = FieldValues> {
+  control: Control<T>; // Specify control type for form
+  name: Path<T>;
   label?: string;
   placeholder?: string;
   iconSrc?: React.ReactNode | string;
@@ -43,11 +43,17 @@ interface CustomProps {
   dateFormat?: string;
   showTimeSelect?: boolean;
   children?: React.ReactNode;
-  renderSkeleton?: (field: any) => React.ReactNode;
+  renderSkeleton?: (field: ControllerRenderProps<T>) => React.ReactNode; // Use ControllerRenderProps<T> type here
   fieldType: FormFieldType;
 }
 
-const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
+const RenderInput = <T extends FieldValues>({
+  field,
+  props,
+}: {
+  field: ControllerRenderProps<T>;
+  props: CustomProps<T>;
+}) => {
   switch (props.fieldType) {
     case FormFieldType.INPUT:
       return (
@@ -136,7 +142,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
             <ReactDatePicker
               showTimeSelect={props.showTimeSelect ?? false}
               selected={field.value}
-              onChange={(date: Date) => field.onChange(date)}
+              onChange={(date: Date | null) => field.onChange(date)}
               timeInputLabel="Time:"
               dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
               wrapperClassName="date-picker"
@@ -166,7 +172,7 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
   }
 };
 
-const CustomFormField = (props: CustomProps) => {
+const CustomFormField = <T extends FieldValues>(props: CustomProps<T>) => {
   const { control, name, label } = props;
 
   return (
