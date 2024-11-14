@@ -5,6 +5,7 @@ import HostelListingSection from "@/components/organisms/HostelListingSection";
 import TestimoniesSection from "@/components/organisms/TestimoniesSection";
 import CtaSection from "@/components/organisms/CtaSection";
 import HelpSection from "@/components/organisms/HelpSection";
+import HostelImageGallery from "@/components/organisms/HostelImageGallery";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <AboutUsSection />
       <HostelListingSection />
       <TestimoniesSection />
+      <HostelImageGallery />
       <CtaSection />
       <HelpSection />
     </>

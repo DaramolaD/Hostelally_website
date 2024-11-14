@@ -71,7 +71,6 @@ body {
   }
 }
 
-
 /* Custom Scrollbar Styles */
 .scroll-container::-webkit-scrollbar {
   width: 8px; /* Adjust width for horizontal scrollbar */
@@ -92,4 +91,46 @@ body {
 
 .scroll-container::-webkit-scrollbar-thumb:hover {
   background-color: #374151; /* Slightly darker color on hover */
+}
+
+@layer utilities {
+  /* ===== UTILITIES */
+  .text-14-medium {
+    @apply text-[14px] leading-[18px] font-medium;
+  }
+  .shad-input-label {
+    @apply text-14-medium text-dark-100 !important;
+  }
+
+  .shad-input {
+    @apply bg-white placeholder:text-dark-600 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
+
+  .shad-input-icon {
+    @apply bg-white placeholder:text-dark-600 border-dark-500 h-11 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
+  .shad-textArea {
+    @apply bg-white h-40 border-0 placeholder:text-dark-600 border-dark-500 focus-visible:ring-0 focus-visible:ring-offset-0 !important;
+  }
+
+   /* =====  REACT PHONE NUMBER INPUT OVERRIDES */
+   .input-phone {
+    @apply mt-2 h-11 rounded-md px-3 text-sm border bg-white placeholder:text-dark-600 border-dark-500 !important;
+  }
+  .PhoneInputInput {
+    @apply border focus-visible:ring-0 focus-visible:ring-offset-0 !important
+  }
+
+  /* =====  REACT DATE PICKER OVERRIDES */
+  .date-picker {
+    @apply overflow-hidden border-transparent w-full placeholder:text-dark-600  h-11 text-14-medium rounded-md px-3 outline-none !important;
+  }
+}
+.PhoneInputInput {
+  border: none; /* Apply a border */
+  outline: none; /* Remove the default outline when focused */
+}
+
+.PhoneInputInput:focus {
+  box-shadow: none; /* Disable focus ring shadow */
 }

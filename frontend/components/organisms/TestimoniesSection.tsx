@@ -49,8 +49,8 @@ const TestimoniesSection = () => {
   };
 
   return (
-    <section className="bg-[#E5E5EA] py-16 md:py-20 md:pt-40 hover:shadow-md">
-      <div className="container mx-auto grid gap-11">
+    <section className="bg-[#E5E5EA] max-w-screen-2xl mx-auto py-16 md:py-20 md:pt-40 hover:shadow-md">
+      <div className="container grid gap-11">
         {/* Section Header */}
         <div className="flex flex-col max-w-[820px] mx-auto gap-2 items-start md:items-center">
           <Heading level={2} size="md" align="center" weight="medium">
