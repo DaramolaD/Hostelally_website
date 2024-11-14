@@ -12,23 +12,36 @@ export default {
     container: {
       center: true, // Centers the container
       padding: {
-        DEFAULT: "1rem",  // Default padding for mobile
-        sm: "2rem",       // Padding for small screens
-        md: "3rem",       // Padding for medium screens
-        lg: "4rem",       // Padding for large screens
-        xl: "5rem",       // Padding for extra-large screens
-        "2xl": "6rem",    // Padding for extra-extra-large screens
+        DEFAULT: "1rem", // Default padding for mobile
+        sm: "2rem", // Padding for small screens
+        md: "3rem", // Padding for medium screens
+        lg: "4rem", // Padding for large screens
+        xl: "5rem", // Padding for extra-large screens
+        "2xl": "6rem", // Padding for extra-extra-large screens
       },
       screens: {
         sm: "640px",
         md: "768px",
         lg: "1024px",
         xl: "1280px",
-        "2xl": "1440px",  // Max width for 2xl screens
+        "2xl": "1440px", // Max width for 2xl screens
       },
     },
     extend: {
       colors: {
+        dark: {
+          100: "#00000",
+          150: "#f3f3f3",
+          200: "#e1e1e1",
+          300: "#cfcfcf",
+          400: "#b0b0b0",
+          500: "#8f8f8f",
+          600: "#6e6e6e",
+          700: "#4d4d4d",
+          800: "#333333",
+          900: "#1a1a1a",
+          1000: "#0d0d0d",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {
