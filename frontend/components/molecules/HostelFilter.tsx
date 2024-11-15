@@ -6,9 +6,8 @@ import { Form } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Filters } from "@/lib/validation";
 import LocationFilter from "./LocationFilterHnadler";
-import { DatePicker } from "./DatePickerForm";
-import { FormContainer } from "./FtlerSection";
 import { RoomSelection } from "./RoomFilterHnadler";
+import { DatePicker } from "./DatePicker";
 
 type HostelFilterProps = {
   onApplyFilters: (filters: Filters) => void;
@@ -27,8 +26,8 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
   const form = useForm({
     defaultValues: {
       location: filters.location || "",
-      checkIn: filters.checkIn || "",
-      checkOut: filters.checkOut || "",
+      checkIn: filters.checkIn || null,
+      checkOut: filters.checkOut || null,
     },
   });
 
@@ -61,7 +60,7 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleApply)}
-          className="flex-1 space-y-4"
+          className="flex md:justify-center gap-4 flex-wrap"
         >
           <LocationFilter
             options={hostelLocations}
@@ -71,22 +70,18 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
             }
           />
           <DatePicker
-            name="checkIn"
-            control={form.control}
-            label="Check-In Date"
-            placeholder="Select a date"
-            onChange={(date) =>
+            selectedDate={filters.checkIn}
+            onDateChange={(date) =>
               setFilters((prev: Filters) => ({ ...prev, checkIn: date }))
             }
+            placeholder="Check-In Date"
           />
           <DatePicker
-            name="checkOut"
-            control={form.control}
-            label="Check-Out Date"
-            placeholder="Select a date"
-            onChange={(date) =>
+            selectedDate={filters.checkOut}
+            onDateChange={(date) =>
               setFilters((prev: Filters) => ({ ...prev, checkOut: date }))
             }
+            placeholder="Check-Out Date"
           />
           <RoomSelection
             adults={filters.adults}
@@ -94,10 +89,7 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
             rooms={filters.rooms}
             onChange={handleRoomChange}
           />
-
-          <FormContainer />
-
-          <Button type="submit" className="mt-4">
+          <Button type="submit" className="">
             Apply Filters
           </Button>
         </form>

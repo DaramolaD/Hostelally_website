@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -34,6 +33,8 @@ const LocationFilter: React.FC<LocationFilterProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
 
+  const selectedLabel = options.find((option) => option.value === value)?.label || "Select Hostel Location";
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -41,24 +42,16 @@ const LocationFilter: React.FC<LocationFilterProps> = ({
           <Button
             variant="outline"
             role="combobox"
-            className={cn(
-              "w-[200px] justify-between",
-              !value && "text-muted-foreground"
-            )}
+            className={cn("w-[200px] justify-between", !value && "text-muted-foreground")}
           >
-            {value
-              ? options.find((option) => option.value === value)?.label
-              : "Select Hostel Location"}
+            {selectedLabel}
             <ChevronsUpDown className="opacity-50" />
           </Button>
         </FormControl>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
         <Command>
-          <CommandInput
-            placeholder="Search Hostel Location..."
-            className="h-9"
-          />
+          <CommandInput placeholder="Search Hostel Location..." className="h-9" />
           <CommandList>
             <CommandEmpty>No location found.</CommandEmpty>
             <CommandGroup>
@@ -72,12 +65,7 @@ const LocationFilter: React.FC<LocationFilterProps> = ({
                   }}
                 >
                   {option.label}
-                  <Check
-                    className={cn(
-                      "ml-auto",
-                      option.value === value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
+                  <Check className={cn("ml-auto", option.value === value ? "opacity-100" : "opacity-0")} />
                 </CommandItem>
               ))}
             </CommandGroup>

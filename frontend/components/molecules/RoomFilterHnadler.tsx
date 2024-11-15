@@ -34,7 +34,7 @@ export const RoomSelection: React.FC<RoomSelectionProps> = ({
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
-        <Button variant="outline" className="w-fit justify-between">
+        <Button variant="outline" className="w-fit justify-between !mt-0">
           {adults} Adult(s), {child} Child(ren), {rooms} Room(s)
         </Button>
       </PopoverTrigger>
