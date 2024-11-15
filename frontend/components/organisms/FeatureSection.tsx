@@ -14,7 +14,7 @@ const FeatureSection = () => {
   }, []);
 
   return (
-    <section className='bg-[#C7C7CC] max-w-screen-2xl mx-auto'>
+    <section className='bg-[#C7C7CC] max-w-screen-2xl mx-auto pt-10 md:pt-0'>
       <div className="container grid gap-9 relative w-full py-20 pt-40">
         <div className="flex flex-col text-left gap-2 md:gap-4">
           <Heading level={2} size="md" align="left" weight="medium">

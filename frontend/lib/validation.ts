@@ -21,3 +21,31 @@ export const formSchema = z.object({
     message: "Birth date cannot be in the future",
   }),
 });
+export const FormSchema23 = z.object({
+  hostelLocation: z.string({
+    required_error: "Please select a Hostel Location.",
+  }),
+});
+
+export interface Filters {
+  location: string;
+  // dob: Date | null;
+  checkIn: Date | null;
+  checkOut: Date | null;
+  adults: number;
+  child: number;
+  rooms: number;
+}
+
+export const FiltersSchema = z.object({
+  hostelLocation: z.string(),
+  dob: z.date().nullable(),
+  adults: z.number().nonnegative(),
+  child: z.number().nonnegative(),
+  rooms: z.number().nonnegative(),
+});
+
+export interface HostelFilterProps {
+  filters: Filters;
+  onApplyFilters: (filters: Filters) => void;
+}
