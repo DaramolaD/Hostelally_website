@@ -1,0 +1,96 @@
+{
+    "termsAndConditions": {
+      "introduction": "Welcome to Regal Haven. By using our website and booking services, you agree to the following Terms and Conditions. Please read them carefully before using our services.",
+      "bookingPolicy": {
+        "title": "Booking Policy",
+        "content": [
+          "To make a reservation, you must provide valid identification and payment details.",
+          "A booking is only confirmed once you receive a confirmation email.",
+          "Payments can be made through our secure online payment gateway or at the hostel upon arrival."
+        ]
+      },
+      "cancellationPolicy": {
+        "title": "Cancellation Policy",
+        "content": [
+          "Cancellations must be made at least 24 hours in advance to receive a full refund.",
+          "If you cancel less than 24 hours before your check-in time, a cancellation fee of [insert amount] will be charged."
+        ]
+      },
+      "checkInOutPolicy": {
+        "title": "Check-In and Check-Out",
+        "content": [
+          "Check-in is available from [insert time].",
+          "Check-out time is [insert time].",
+          "Early check-in or late check-out may incur additional charges, subject to availability."
+        ]
+      },
+      "behaviorPolicy": {
+        "title": "Behavior and Conduct",
+        "content": [
+          "Guests must respect hostel policies, local laws, and other guests' comfort.",
+          "Any disruptive behavior may result in immediate expulsion from the hostel without a refund."
+        ]
+      },
+      "liability": {
+        "title": "Liability",
+        "content": [
+          "We are not responsible for loss or damage to personal belongings during your stay.",
+          "We are not liable for any accidents or injuries that occur while staying at our hostel."
+        ]
+      },
+      "modification": {
+        "title": "Modification of Terms",
+        "content": [
+          "We reserve the right to modify these Terms and Conditions at any time.",
+          "Any changes will be communicated to you via email or on our website."
+        ]
+      }
+    },
+    "privacyPolicy": {
+      "introduction": "At Regal Haven, we are committed to protecting your privacy. This Privacy Policy outlines how we collect, use, and safeguard your personal information when you use our services.",
+      "dataCollection": {
+        "title": "Information We Collect",
+        "content": [
+          "Personal Information: We collect personal details such as your name, email address, phone number, and payment information when you make a booking.",
+          "Usage Data: We may collect information about how you use our website, such as IP addresses, browser type, and pages visited."
+        ]
+      },
+      "useOfData": {
+        "title": "How We Use Your Information",
+        "content": [
+          "To process your bookings and provide you with customer support.",
+          "To send you confirmation emails and updates about your reservation.",
+          "To improve our services and website performance."
+        ]
+      },
+      "dataSecurity": {
+        "title": "Data Security",
+        "content": [
+          "We take appropriate measures to protect your personal information from unauthorized access, alteration, or destruction.",
+          "However, please note that no data transmission over the internet is 100% secure."
+        ]
+      },
+      "sharingData": {
+        "title": "Sharing Your Information",
+        "content": [
+          "We do not sell or rent your personal information to third parties.",
+          "We may share your data with service providers (e.g., payment processors) to complete your bookings."
+        ]
+      },
+      "rights": {
+        "title": "Your Rights",
+        "content": [
+          "You have the right to access, correct, or delete your personal information at any time.",
+          "You can contact us to request these changes."
+        ]
+      },
+      "policyChanges": {
+        "title": "Changes to This Policy",
+        "content": [
+          "We may update our Privacy Policy from time to time.",
+          "Any changes will be posted on this page, and we will notify you if significant updates are made."
+        ]
+      }
+    }
+  }
+  

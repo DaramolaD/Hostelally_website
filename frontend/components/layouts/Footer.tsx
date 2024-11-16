@@ -6,16 +6,45 @@ import { Facebook, Instagram, LinkedinIcon, TwitterIcon } from "lucide-react";
 
 const Footer = () => {
   const footerSections = [
-    { title: "About Us", links: ["About HostelAlly", "Our Story", "Careers"] },
-    { title: "Hostels", links: ["Locations", "Room Options"] },
-    { title: "Support", links: ["FAQs", "Customer Support", "Contact Us"] },
-    { title: "Policies", links: ["Terms & Conditions", "Privacy Policy"] },
+    {
+      title: "About Us",
+      links: [
+        { name: "About HostelAlly", href: "/about-us" },
+        { name: "Our Story", href: "/our-story" },
+        { name: "Careers", href: "/careers" },
+      ],
+    },
+    {
+      title: "Hostels",
+      links: [
+        { name: "Locations", href: "/locations" },
+        { name: "Room Options", href: "/room-options" },
+      ],
+    },
+    {
+      title: "Support",
+      links: [
+        { name: "FAQs", href: "/faqs" },
+        { name: "Customer Support", href: "/customer-support" },
+        { name: "Contact Us", href: "/contact-us" },
+      ],
+    },
+    {
+      title: "Policies",
+      links: [
+        { name: "Terms & Conditions", href: "/terms-and-conditions" },
+        { name: "Privacy Policy", href: "/privacy-policy" },
+      ],
+    },
     {
       title: "Resources",
-      links: ["Travel Blog", "Travel Guides", "Newsletter"],
+      links: [
+        { name: "Travel Blog", href: "/blog" },
+        { name: "Travel Guides", href: "/guides" },
+        { name: "Newsletter", href: "/newsletter" },
+      ],
     },
   ];
-
   // Social Media Links Array
   const socialMediaLinks = [
     { name: "Facebook", href: "https://www.facebook.com", icon: <Facebook /> },
@@ -33,7 +62,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer aria-label="Footer" className="bg-[#E5E5EA] p-6 max-w-screen-2xl mx-auto">
+    <footer
+      aria-label="Footer"
+      className="bg-[#E5E5EA] p-6 max-w-screen-2xl mx-auto"
+    >
       <div className="container mx-auto flex flex-col justify-between items-start md:items-center gap-14 pt-10">
         {/* Company Info and Logo */}
         <div className="flex flex-col gap-4 w-full">
@@ -82,13 +114,13 @@ const Footer = () => {
               <ul className="grid gap-2">
                 {section.links.map((link, idx) => (
                   <li key={idx}>
-                    <a
-                      href={`#${link.replace(/\s+/g, "-").toLowerCase()}`}
-                      aria-label={`Go to ${link}`}
-                      className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline focus:outline-none focus:ring-2 focus:ring-green-600 rounded"
+                    <Link
+                      href={link.href} // Directly using the href from footerSections
+                      aria-label={`Go to ${link.name}`}
+                      className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline focus:outline-none focus:ring-2 focus:ring-black rounded"
                     >
-                      {link}
-                    </a>
+                      {link.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -110,7 +142,7 @@ const Footer = () => {
         </h2>
 
         <hr className="w-full border-black/20 my-6 md:my-12" />
-        
+
         <p className="text-center text-black/70 mt-4">
           &copy; {new Date().getFullYear()} Company Name. All rights reserved.
         </p>

@@ -5,9 +5,11 @@ import Link from "next/link";
 import logo from "@/public/assets/icons/logo.svg";
 import { Button } from "../ui/button";
 import { AlignJustify, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
 
   const navLinks = [
     { label: "Home", href: "/home" },
@@ -26,7 +28,7 @@ const Header = () => {
         <Link
           href="/"
           aria-label="Homepage"
-          className="flex items-center p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600 rounded"
+          className="flex items-center p-1 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black rounded"
         >
           <Image
             src={logo}
@@ -43,7 +45,7 @@ const Header = () => {
             <Link
               key={index}
               href={href}
-              className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline focus:outline-none focus:ring-2 focus:ring-green-600 rounded"
+              className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline focus:outline-none focus:ring-2 focus:ring-black rounded"
             >
               {label}
             </Link>
@@ -52,15 +54,17 @@ const Header = () => {
 
         {/* Desktop CTA Buttons */}
         <div className="hidden md:flex gap-2">
-          <Button variant="outline">Contact</Button>
-          <Button>Book A Room</Button>
+          <Button variant="outline" onClick={() => router.push("/contact-us")}>
+            Contact-Us
+          </Button>
+          <Button onClick={() => router.push("/sign-in")}>Book A Room</Button>
         </div>
 
         {/* Mobile Menu Toggle Button */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Open menu"
-          className="flex md:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+          className="flex md:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-black"
         >
           <AlignJustify size={24} />
         </button>
@@ -97,7 +101,7 @@ const Header = () => {
               <button
                 onClick={() => setMenuOpen(false)}
                 aria-label="Close menu"
-                className="flex md:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-600"
+                className="flex md:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-black"
               >
                 <X size={24} />
               </button>
@@ -112,7 +116,7 @@ const Header = () => {
                 <Link
                   key={index}
                   href={href}
-                  className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline text-lg focus:outline-none focus:ring-2 focus:ring-green-600 rounded"
+                  className="text-black/70 hover:text-black underline-offset-4 decoration-2 decoration-black hover:underline text-lg focus:outline-none focus:ring-2 focus:ring-black rounded"
                   onClick={() => setMenuOpen(false)} // Close menu on link click
                 >
                   {label}
