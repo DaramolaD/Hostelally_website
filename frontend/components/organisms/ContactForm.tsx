@@ -67,7 +67,7 @@ const ContactForm = () => {
           />
 
           {/* Submit Button */}
-          <Button type="submit">Submit</Button>
+          <Button size="lg" type="submit">Submit</Button>
         </form>
       </Form>
     </div>

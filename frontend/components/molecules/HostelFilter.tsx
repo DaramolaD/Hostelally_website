@@ -5,8 +5,8 @@ import { Button } from "../ui/button";
 import { Form } from "../ui/form";
 import { useForm } from "react-hook-form";
 import { Filters } from "@/lib/validation";
-import LocationFilter from "./LocationFilterHnadler";
-import { RoomSelection } from "./RoomFilterHnadler";
+import LocationFilter from "./LocationFilter";
+import { RoomSelection } from "./RoomSelection";
 import { DatePicker } from "./DatePicker";
 
 type HostelFilterProps = {
@@ -89,7 +89,7 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
             rooms={filters.rooms}
             onChange={handleRoomChange}
           />
-          <Button type="submit" className="">
+          <Button size="lg" type="submit" className="">
             Apply Filters
           </Button>
         </form>
