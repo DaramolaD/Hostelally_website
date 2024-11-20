@@ -12,7 +12,7 @@ const Header = () => {
   const router = useRouter();
 
   const navLinks = [
-    { label: "Home", href: "/home" },
+    { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     { label: "Locations", href: "/location" },
     { label: "Blog", href: "/blog" },
