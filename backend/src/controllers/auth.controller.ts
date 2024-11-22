@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import User from "../models/users.model";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie";
+import { sendVerificationEmail } from "../services/emailService";
 
 export const signUp = async (req: Request, res: Response) => {
   // Validate input
@@ -38,6 +39,9 @@ export const signUp = async (req: Request, res: Response) => {
 
     // generate token and setCookie
     generateTokenAndSetCookie(res, newUser._id);
+
+    await sendVerificationEmail(email, verificationToken);
+
     res.status(201).json({
       success: true,
       message: "User registered successfully.",
