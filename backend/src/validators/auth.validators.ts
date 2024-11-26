@@ -8,6 +8,12 @@ export const signUpValidationRules = [
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters long."),
 ];
+export const loginValidationRules = [
+  body("email").isEmail().withMessage("A valid email is required."),
+  body("password")
+    .isLength({ min: 6 })
+    .withMessage("Password must be at least 6 characters long."),
+];
 
 export const verifyEmailValidationRules = [
   // Validate userId: Must be a 24-character hexadecimal string

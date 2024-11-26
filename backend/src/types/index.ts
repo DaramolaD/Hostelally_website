@@ -13,4 +13,5 @@ export interface UserDocument extends Document {
   resetPasswordExpireAt?: Date;
   verificationToken?: string;
   verificationTokenExpiresAt?: Date;
+  comparePassword(enteredPassword: string): Promise<boolean>;
 }

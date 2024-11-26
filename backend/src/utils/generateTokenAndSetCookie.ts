@@ -17,5 +17,5 @@ export const generateTokenAndSetCookie = (res: Response, userId: string) => {
     sameSite: "strict", // Set SameSite attribute to prevent CSRF attacks
   });
 
-  return token;
+  return;
 };
