@@ -6,6 +6,7 @@ import {
   verifyEmail,
 } from "../controllers/auth.controller";
 import {
+  loginValidationRules,
   signUpValidationRules,
   verifyEmailValidationRules,
 } from "../validators/auth.validators";
@@ -13,7 +14,7 @@ import {
 const router = express.Router();
 
 router.post("/signup", signUpValidationRules, signUp);
-router.post("/login", logIn);
+router.post("/login", loginValidationRules, logIn);
 router.post("/logout", logOut);
 router.post("/verify-email", verifyEmailValidationRules, verifyEmail);
 

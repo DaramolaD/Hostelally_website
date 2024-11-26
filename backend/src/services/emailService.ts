@@ -36,8 +36,7 @@ export const sendWelcomeEmail = async (
       subject: "Verify Your Email - HostelAlly",
       html: emailHtml,
     };
-    const response = await transporter.sendMail(mailOptions);
-    console.log("Welcome email sent successfully", response);
+    await transporter.sendMail(mailOptions);
   } catch (error) {
     console.error(`Error sending welcome email`, error);
 
