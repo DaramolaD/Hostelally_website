@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import User from "../models/users.model";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie";
-import { sendVerificationEmail, sendWelcomeEmail } from "../services/emailService";
+import {
+  sendVerificationEmail,
+  sendWelcomeEmail,
+} from "../services/emailService";
 import crypto from "crypto";
 import mongoose from "mongoose";
+import { UserDocument } from "../types";
 
 export const signUp = async (req: Request, res: Response) => {
   // Validate input
@@ -52,9 +56,6 @@ export const signUp = async (req: Request, res: Response) => {
     });
     await newUser.save();
 
-    // generate token and setCookie
-    // generateTokenAndSetCookie(res, newUser._id);
-
     await sendVerificationEmail(email, verificationToken);
 
     res.status(201).json({
@@ -76,10 +77,68 @@ export const signUp = async (req: Request, res: Response) => {
   }
 };
 export const logIn = async (req: Request, res: Response) => {
-  res.status(200).json({ message: "Log In Route is working" });
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+  const { email, password } = req.body;
+  try {
+    const user = (await User.findOne({ email })) as UserDocument;
+
+    if (!user) {
+      res.status(400).json({ message: "Invalid credentials" });
+      return;
+    }
+    const isPasswordValid = await user.comparePassword(password);
+    if (!isPasswordValid) {
+      res.status(400).json({ message: "Invalid credentials" });
+      return;
+    }
+
+    // generate token and setCookie
+    generateTokenAndSetCookie(res, user._id);
+
+    //update loginDate
+    user.lastLoginDate = new Date();
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Login Successfully",
+      user: {
+        userId: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        lastLoginDate: user.lastLoginDate,
+        isAdmin: user.isAdmin,
+        isVerified: user.isVerified,
+      },
+    });
+    return;
+  } catch (error) {
+    console.log("Error during Login", error);
+    res.status(500).json({ success: false, message: "Something went wrong." });
+    return;
+  }
 };
 export const logOut = async (req: Request, res: Response) => {
-  res.status(200).json({ message: "Log Out Route is working" });
+  try {
+    res.clearCookie("auth_token");
+
+    // Send a success response
+    res.status(200).json({ success: true, message: "Logged out successfully" });
+    return;
+  } catch (error) {
+    console.error("Error during Logout:", error);
+
+    // Handle any unexpected errors
+    res
+      .status(500)
+      .json({ success: false, message: "Something went wrong during logout." });
+    return;
+  }
 };
 
 export const verifyEmail = async (req: Request, res: Response) => {
@@ -129,13 +188,22 @@ export const verifyEmail = async (req: Request, res: Response) => {
     user.isVerified = true;
     user.verificationToken = undefined;
     user.verificationTokenExpiresAt = undefined;
+
     await user.save();
+
     await sendWelcomeEmail(user.email, user.firstName, user.lastName);
+
     res.status(200).json({
+      success: true,
       message: "Email successfully verified.",
     });
+    return;
   } catch (error) {
     console.error("Error during email verification:", error);
-    res.status(500).json({ message: "Something went wrong." });
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong.",
+    });
+    return;
   }
 };
