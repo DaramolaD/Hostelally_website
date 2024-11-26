@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import User from "../models/users.model";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie";
-import { sendVerificationEmail } from "../services/emailService";
+import { sendVerificationEmail, sendWelcomeEmail } from "../services/emailService";
 import crypto from "crypto";
 import mongoose from "mongoose";
 
@@ -130,6 +130,7 @@ export const verifyEmail = async (req: Request, res: Response) => {
     user.verificationToken = undefined;
     user.verificationTokenExpiresAt = undefined;
     await user.save();
+    await sendWelcomeEmail(user.email, user.firstName, user.lastName);
     res.status(200).json({
       message: "Email successfully verified.",
     });
