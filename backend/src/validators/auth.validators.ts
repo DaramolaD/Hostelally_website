@@ -34,3 +34,6 @@ export const verifyEmailValidationRules = [
     .isNumeric()
     .withMessage("Verification token must be a numeric value."),
 ];
+export const forgotPasswordValidationRules = [
+  body("email").isEmail().withMessage("A valid email is required."),
+];
