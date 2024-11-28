@@ -2,12 +2,12 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import mongoose from "mongoose";
 import crypto from "crypto";
-import bcrypt from "bcryptjs";
 
 import User from "../models/users.model";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie";
 import {
   sendPasswordResetEmail,
+  sendResetSuccessEmail,
   sendVerificationEmail,
   sendWelcomeEmail,
 } from "../services/emailService";
@@ -30,16 +30,6 @@ export const signUp = async (req: Request, res: Response) => {
       res.status(400).json({ message: "User Credential already exit" });
       return;
     }
-
-    // ---------- For verification Link ----------
-
-    //  // Generate a secure random verification token
-    //  const cryptoToken = crypto.randomBytes(16).toString('hex');
-
-    //  // Hash the token before storing it in the database
-    //  const verificationToken = await bcrypt.hash(cryptoToken, 10);
-
-    // ---------- For verification Link ----------
 
     // Generate verification token
     const verificationToken = (
@@ -80,6 +70,7 @@ export const signUp = async (req: Request, res: Response) => {
     return;
   }
 };
+
 export const logIn = async (req: Request, res: Response) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -127,6 +118,7 @@ export const logIn = async (req: Request, res: Response) => {
     return;
   }
 };
+
 export const logOut = async (req: Request, res: Response) => {
   try {
     res.clearCookie("auth_token");
@@ -136,8 +128,6 @@ export const logOut = async (req: Request, res: Response) => {
     return;
   } catch (error) {
     console.error("Error during Logout:", error);
-
-    // Handle any unexpected errors
     res
       .status(500)
       .json({ success: false, message: "Something went wrong during logout." });
@@ -225,24 +215,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
       res.status(400).json({ success: false, message: "Invalid credentials" });
       return;
     }
-
-    // ---------- For verification Link ----------
-
-    //  // Generate a secure random verification token
-    const cryptoToken = crypto.randomBytes(20).toString("hex");
-
-    //  // Hash the token before storing it in the database
-    // const resetToken = await bcrypt.hash(cryptoToken, 10);
-    // const resetTokenExpiresAt = Date.now() + 1 * 60 * 60 * 1000 // 24 hours
-
-    // user.resetPasswordToken = resetToken
-    // user.resetPasswordExpireAt = resetTokenExpiresAt
-
-    // const verificationLink = `${process.env.CLIENT_URL}/reset-password/${resetToken}`
-
-    // await user.save()
-
-    // Generate reset token
+    // Generate a secure random reset token
     const resetToken = crypto.randomBytes(20).toString("hex");
     const resetTokenExpiresAt = new Date(Date.now() + 1 * 60 * 60 * 1000); // 1 hour
 
@@ -255,13 +228,10 @@ export const forgotPassword = async (req: Request, res: Response) => {
     await user.save();
 
     await sendPasswordResetEmail(user.email, verificationLink);
-    // generateTokenAndSetCookie(res, user._id);
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Password reset link sent to your email",
-      });
+    res.status(200).json({
+      success: true,
+      message: "Password reset link sent to your email",
+    });
     return;
   } catch (error) {
     console.error("Error during forgotPassword:", error);
@@ -269,6 +239,76 @@ export const forgotPassword = async (req: Request, res: Response) => {
       success: false,
       message: "Something went wrong.",
     });
+    return;
+  }
+};
+
+export const resetPassword = async (req: Request, res: Response) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+  const { token } = req.params;
+  const { password } = req.body;
+  try {
+    const user = await User.findOne({
+      resetPasswordToken: token,
+      resetPasswordExpiresAt: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      res
+        .status(400)
+        .json({ success: false, message: "Invalid or expired reset token" });
+      return;
+    }
+
+    // Update the user's password
+    user.password = password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpireAt = undefined;
+    await user.save();
+
+    await sendResetSuccessEmail(user.email);
+
+    res
+      .status(200)
+      .json({ success: true, message: "Password reset successful" });
+    return;
+  } catch (error) {
+    console.error("Error during resetPassword:", error);
+    res.status(400).json({
+      success: false,
+      message: "Something went wrong.",
+    });
+    return;
+  }
+};
+
+export const checkAuth = async (req: Request, res: Response) => {
+  try {
+    const user = await User.findById(req.userId).select("-password");
+    if (!user) {
+      res.status(400).json({ success: false, message: "User not found" });
+      return;
+    }
+    res.status(200).json({
+      success: true,
+      user: {
+        userId: user._id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        lastLoginDate: user.lastLoginDate,
+        isAdmin: user.isAdmin,
+        isVerified: user.isVerified,
+      },
+    });
+    return;
+  } catch (error) {
+    console.log("Error in checkAuth ", error);
+    res.status(400).json({ success: false, message: "Something went wrong" });
     return;
   }
 };

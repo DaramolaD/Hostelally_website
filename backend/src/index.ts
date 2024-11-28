@@ -3,14 +3,16 @@ import cors from "cors";
 import "dotenv/config";
 import { connectDB } from "../db/connectDB";
 import authRoutes from './routes/auth.route'
+import cookieParser from "cookie-parser";
 
 connectDB()
 
 const app = express();
 
 // Middleware to parse JSON and URL-encoded data
-app.use(express.json());
+app.use(express.json()); // allow us to parse incoming requests: req.body
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser()) // allow us to parse incoming cookies: req.cookies
 
 // Enable CORS
 app.use(cors());
