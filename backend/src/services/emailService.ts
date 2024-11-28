@@ -2,8 +2,9 @@ import { transporter } from "../config/email";
 import {
   EMAIL_VERIFICATION_SUCCESS_TEMPLATE,
   PASSWORD_RESET_REQUEST_TEMPLATE,
+  PASSWORD_RESET_SUCCESS_TEMPLATE,
   VERIFICATION_EMAIL_TEMPLATE,
-} from "../templates/emailTemplates";
+} from "../templates/email.templates";
 
 export const sendVerificationEmail = async (
   email: string,
@@ -68,5 +69,21 @@ export const sendPasswordResetEmail = async (
     console.error(`Error sending password reset email`, error);
 
     throw new Error(`Error sending password reset email: ${error}`);
+  }
+};
+
+export const sendResetSuccessEmail = async (email: string) => {
+  try {
+    const mailOptions = {
+      from: '"HostelAlly Support" <no-reply@hostelally.com>',
+      to: email,
+      subject: "Password Reset Successful - HostelAlly",
+      html: PASSWORD_RESET_SUCCESS_TEMPLATE,
+    };
+    await transporter.sendMail(mailOptions);
+  } catch (error) {
+    console.error(`Error sending password reset success email`, error);
+
+    throw new Error(`Error sending password reset success email: ${error}`);
   }
 };
