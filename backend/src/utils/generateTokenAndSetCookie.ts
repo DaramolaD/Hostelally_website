@@ -1,14 +1,15 @@
 import { Response } from "express";
 import jwt from "jsonwebtoken";
+import { generateToken } from "./jwt.util";
 
 export const generateTokenAndSetCookie = (res: Response, userId: string) => {
   const jwtSecret = process.env.JWT_SECRET_KEY as string;
   if (!jwtSecret) {
     throw new Error("JWT_SECRET is not defined in environment variables.");
   }
-  const token = jwt.sign({ userId }, jwtSecret, {
-    expiresIn: "1d",
-  });
+
+  const token = generateToken({ userId }, jwtSecret, "1d");
+
   // Set the token in the response as an HttpOnly cookie
   res.cookie("auth_token", token, {
     httpOnly: true, // Prevents client-side access to the cookie

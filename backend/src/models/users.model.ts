@@ -25,6 +25,9 @@ userSchema.pre("save", async function (next) {
   }
 });
 
+// Create TTL index for resetPasswordExpiresAt field
+userSchema.index({ resetPasswordExpireAt: 1 }, { expireAfterSeconds: 0 });
+
 userSchema.methods.comparePassword = async function (enteredPassword: string) {
   return bcrypt.compare(enteredPassword, this.password);
 };
