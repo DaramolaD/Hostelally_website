@@ -18,16 +18,6 @@ const FeatureSection = () => {
     }, 3000);
   }, []);
 
-  const branchRoomData = [
-    {
-      id: 1,
-      branch: "Skyline Hostel Branch",
-      room: "Rooftop Lounge",
-      bookings: "215",
-      rating: "5",
-    },
-  ];
-
   return (
     <section className="bg-gray-50 max-w-screen-2xl mx-auto pt-10 md:pt-0">
       <div className="container grid gap-9 relative w-full py-20 pt-40">
