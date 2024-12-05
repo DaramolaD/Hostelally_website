@@ -47,7 +47,7 @@ const Header = () => {
     onError: (error) => {
       toast({
         title: "Error",
-        description: error?.response?.data?.message || "Sign-in failed",
+        description: error?.message || "Sign-in failed",
         iconType: "error",
       });
     },
