@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -42,7 +42,7 @@ const LocationFilter: React.FC<LocationFilterProps> = ({
           <Button
             variant="outline"
             role="combobox"
-            className={cn("w-[200px] justify-between", !value && "text-muted-foreground")}
+            className={cn("max-md:w-full w-[200px] justify-between", !value && "text-muted-foreground")}
           >
             {selectedLabel}
             <ChevronsUpDown className="opacity-50" />

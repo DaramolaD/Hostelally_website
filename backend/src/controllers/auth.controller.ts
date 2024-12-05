@@ -101,15 +101,6 @@ export const logIn = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: "Login Successfully",
-      user: {
-        userId: user._id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        lastLoginDate: user.lastLoginDate,
-        isAdmin: user.isAdmin,
-        isVerified: user.isVerified,
-      },
     });
     return;
   } catch (error) {
@@ -296,13 +287,9 @@ export const checkAuth = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       user: {
-        userId: user._id,
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
-        lastLoginDate: user.lastLoginDate,
-        isAdmin: user.isAdmin,
-        isVerified: user.isVerified,
       },
     });
     return;

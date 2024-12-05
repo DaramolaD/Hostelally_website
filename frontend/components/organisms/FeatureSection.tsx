@@ -5,7 +5,7 @@ import Image from "next/image";
 import Skyline_Branch_1 from "@/public/assets/imgs/Skyline_Branch_1.png";
 import Skyline_Branch_2 from "@/public/assets/imgs/Skyline_Branch_2.png";
 import Skyline_Branch_3 from "@/public/assets/imgs/Skyline_Branch_3.png";
-import { Star } from "lucide-react";
+import { MoveUpRight } from "lucide-react";
 
 const FeatureSection = () => {
   // State to simulate content loading
@@ -43,25 +43,17 @@ const FeatureSection = () => {
             <div className="relative h-full rounded-xl group overflow-hidden">
               <div className="relative flex items-center h-full">
                 {/* Content that appears on hover */}
-                <div className="absolute bottom-0 w-full flex flex-col gap-2 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h4 className="text-2xl lg:text-4xl font-medium">
-                    Skyline Hostel Branch
-                  </h4>
-                  <div className="flex items-center justify-between">
-                    <p className="text-xl lg:text-2xl font-light">
+                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex flex-col gap-4 justify-between">
+                    <h4 className="text-xl lg:text-2xl font-medium">
+                      Skyline Hostel Branch
+                    </h4>
+                    <p className="text-sm lg:text-xl font-light">
                       Rooftop Lounge
                     </p>
-                    <div className="flex items-center">
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-xl lg:text-2xl font-normal">
-                        (215 Bookings)
-                      </span>
-                    </div>
+                  </div>
+                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
+                    <MoveUpRight className="text-white size-6 lg:size-7" />
                   </div>
                 </div>
 
@@ -88,23 +80,17 @@ const FeatureSection = () => {
             <div className="flex flex-col gap-6 md:gap-4">
               {/* Second container */}
               <div className="relative flex-1 rounded-xl group overflow-hidden">
-                <div className="absolute bottom-0 w-full flex flex-col gap-2 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h4 className="text-2xl font-medium">
-                    Skyline Hostel Branch
-                  </h4>
-                  <div className="flex items-center justify-between">
-                    <p className="text-xl font-light">Rooftop Lounge</p>
-                    <div className="flex items-center">
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-xl font-normal">
-                        (215 Bookings)
-                      </span>
-                    </div>
+              <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex flex-col gap-4 justify-between">
+                    <h4 className="text-xl lg:text-2xl font-medium">
+                      Skyline Hostel Branch
+                    </h4>
+                    <p className="text-sm lg:text-xl font-light">
+                      Rooftop Lounge
+                    </p>
+                  </div>
+                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
+                    <MoveUpRight className="text-white size-6 lg:size-7" />
                   </div>
                 </div>
                 <Image
@@ -118,23 +104,17 @@ const FeatureSection = () => {
 
               {/* Third container */}
               <div className="relative flex-1 rounded-xl group overflow-hidden">
-                <div className="absolute bottom-0 w-full flex flex-col gap-2 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <h4 className="text-2xl font-medium">
-                    Skyline Hostel Branch
-                  </h4>
-                  <div className="flex items-center justify-between">
-                    <p className="text-xl font-light">Rooftop Lounge</p>
-                    <div className="flex items-center">
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                      <Star className="size-5 text-white fill-white" />
-                    </div>
-                    <div className="flex items-center">
-                      <span className="text-xl font-normal">
-                        (215 Bookings)
-                      </span>
-                    </div>
+                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex flex-col gap-4 justify-between">
+                    <h4 className="text-xl lg:text-2xl font-medium">
+                      Skyline Hostel Branch
+                    </h4>
+                    <p className="text-sm lg:text-xl font-light">
+                      Rooftop Lounge
+                    </p>
+                  </div>
+                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
+                    <MoveUpRight className="text-white size-6 lg:size-7" />
                   </div>
                 </div>
 

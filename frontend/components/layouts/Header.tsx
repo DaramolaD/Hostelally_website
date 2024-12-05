@@ -4,19 +4,58 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/assets/icons/logo.svg";
 import { Button } from "../ui/button";
-import { AlignJustify, X } from "lucide-react";
+import { AlignJustify, Settings, User, UserRound, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useUser } from "@/contexts/UserContext";
+import { getUserInitials } from "@/utils/helper";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+} from "../ui/navigation-menu";
+import { useMutation } from "@tanstack/react-query";
+import { logOut } from "@/services/auth";
+import { toast } from "@/hooks/use-toast";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
+  const { user, setUser } = useUser();
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Locations", href: "/location" },
-    { label: "Blog", href: "/blog" },
+    { label: "About Us", href: "" },
+    { label: "Locations", href: "" },
+    { label: "Services", href: "" },
+    { label: "Blog", href: "" },
   ];
+
+  // Function to get initials from first and last name
+  const userInitials = getUserInitials(user); // Now passing `user` that has `user.user`
+
+  const mutation = useMutation({
+    mutationFn: logOut,
+    onSuccess: (data) => {
+      toast({
+        title: "Success",
+        description: data.message,
+        iconType: "success",
+      });
+      setUser(null);
+    },
+    onError: (error) => {
+      toast({
+        title: "Error",
+        description: error?.response?.data?.message || "Sign-in failed",
+        iconType: "error",
+      });
+    },
+  });
+
+  const handleLogout = () => {
+    mutation.mutate();
+  };
 
   return (
     <header
@@ -57,7 +96,49 @@ const Header = () => {
           <Button variant="outline" onClick={() => router.push("/contact-us")}>
             Contact-Us
           </Button>
-          <Button onClick={() => router.push("/sign-in")}>Book A Room</Button>
+
+          {user ? (
+            <NavigationMenu>
+              <NavigationMenuItem className="!list-none">
+                <NavigationMenuTrigger className="w-fit px-2 rounded-full !size-10 !bg-black/50 !list-none">
+                  {/* <div className="flex bg-black text-white size-10 justify-center items-center border rounded-full border-gray-500"> */}
+                  {userInitials}
+                  {/* </div> */}
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="flex flex-col p-1 px-1 w-fit">
+                    <li className="flex items-center px-1  hover:bg-gray-300 rounded-sm">
+                      <UserRound className="size-5" />
+                      <Link href="/" className="block p-2 text-sm">
+                        Profile
+                      </Link>
+                    </li>
+                    <li className="flex items-center px-1 hover:bg-gray-300 rounded-sm">
+                      <Settings className="size-5" />
+                      <Link href="/" className="block p-2 text-sm">
+                        Bookings
+                      </Link>
+                    </li>
+                    <li className="flex items-center mt-1">
+                      <Button
+                        onClick={handleLogout}
+                        className="w-full  text-sm"
+                      >
+                        Logout
+                      </Button>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenu>
+          ) : (
+            <Link
+              href="/sign-in"
+              className="h-10 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 flex items-center rounded-md text-sm"
+            >
+              SignIn / Register
+            </Link>
+          )}
         </div>
 
         {/* Mobile Menu Toggle Button */}

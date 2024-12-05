@@ -28,12 +28,14 @@ export const DatePicker: React.FC<DatePickerProps> = ({
     onDateChange(date ?? null);
   };
 
+  const today = new Date(); // Current date
+
   return (
     <Popover>
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className={`w-[240px] justify-start text-left font-normal !mt-0 ${
+          className={`max-md:w-full w-[240px] justify-start text-left font-normal !mt-0 ${
             !selectedDate ? "text-muted-foreground" : ""
           }`}
         >
@@ -46,6 +48,7 @@ export const DatePicker: React.FC<DatePickerProps> = ({
           mode="single"
           selected={selectedDate || undefined}
           onSelect={handleDateChange} // Updated to use the handler
+          disabled={(date) => date < today}
           initialFocus
         />
       </PopoverContent>

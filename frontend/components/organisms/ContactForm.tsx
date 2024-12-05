@@ -9,7 +9,7 @@ import CustomFormField, { FormFieldType } from "./CustomFormField";
 import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 import { Mail, Phone, UserRound } from "lucide-react";
-import { formSchema } from "@/lib/validation";
+import { formSchema } from "@/libs/validation";
 
 // Define the ContactForm component
 const ContactForm = () => {
@@ -17,8 +17,10 @@ const ContactForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      birthDate: new Date(), // Default to today's date
+      name: "",
+      email: "",
+      mobile: "",
+      message: "",
     },
   });
 
@@ -34,7 +36,7 @@ const ContactForm = () => {
           <CustomFormField
             fieldType={FormFieldType.INPUT}
             control={form.control}
-            name="username"
+            name="name"
             placeholder="John Doe"
             iconSrc={<UserRound />}
             iconAlt="user"
@@ -67,7 +69,9 @@ const ContactForm = () => {
           />
 
           {/* Submit Button */}
-          <Button size="lg" type="submit">Submit</Button>
+          <Button size="lg" type="submit">
+            Submit
+          </Button>
         </form>
       </Form>
     </div>
