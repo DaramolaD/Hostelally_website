@@ -15,7 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()) // allow us to parse incoming cookies: req.cookies
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+}));
 
 const PORT = process.env.PORT || 5000
 
