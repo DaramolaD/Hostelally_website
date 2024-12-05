@@ -6,7 +6,7 @@ import heroBgImg from "@/public/assets/imgs/Hero_Bg.png";
 const HeroSection = () => {
   return (
     <section className="relative max-w-screen-2xl mx-auto">
-      <div className="container  flex flex-col md:items-center md:justify-center md:text-center relative w-full h-fit z-10">
+      <div className="container flex flex-col relative w-full h-fit z-10">
         <div className="flex flex-col w-full max-w-[735px] gap-2 py-28 pt-60 text-white">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium !leading-snug">
             Your Home Away From Home — <br />

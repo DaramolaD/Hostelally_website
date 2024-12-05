@@ -1,7 +1,20 @@
 import { z } from "zod";
 
+export const signUpSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
+}).refine((data) => data.password === data.confirmPassword, {
+  message: "Passwords do not match",
+  path: ["confirmPassword"],
+});
+export const signInSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
 export const formSchema = z.object({
-  username: z
+  name: z
     .string()
     .min(2, { message: "Name must be at least 2 characters long" })
     .max(50, { message: "Name cannot exceed 50 characters" }),
@@ -17,9 +30,6 @@ export const formSchema = z.object({
     .min(5, { message: "Message must be at least 5 characters long" })
     .max(500, { message: "Message cannot exceed 500 characters" })
     .optional(), // Optional if not required
-  birthDate: z.date().refine((date) => date <= new Date(), {
-    message: "Birth date cannot be in the future",
-  }),
 });
 export const FormSchema23 = z.object({
   hostelLocation: z.string({
@@ -38,12 +48,18 @@ export interface Filters {
 }
 
 export const FiltersSchema = z.object({
-  hostelLocation: z.string(),
-  dob: z.date().nullable(),
-  adults: z.number().nonnegative(),
-  child: z.number().nonnegative(),
-  rooms: z.number().nonnegative(),
+  location: z.string().nonempty("Location is required"),
+  checkIn: z.date().nullable().refine((date) => date !== null, {
+    message: "Check-In date is required",
+  }),
+  checkOut: z.date().nullable().refine((date) => date !== null, {
+    message: "Check-Out date is required",
+  }),
+  adults: z.number().min(1, "At least one adult is required"),
+  child: z.number().min(0, "Children cannot be negative"),
+  rooms: z.number().min(1, "At least one room is required"),
 });
+
 
 export interface HostelFilterProps {
   filters: Filters;

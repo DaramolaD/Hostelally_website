@@ -1,5 +1,5 @@
 import React from "react";
-import content from "@/lib/termsPrivacyContent.json";
+import content from "@/libs/termsPrivacyContent.json";
 
 const PrivacyPage = () => {
   return (

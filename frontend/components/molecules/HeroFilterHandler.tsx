@@ -2,11 +2,29 @@
 
 import React from "react";
 import HostelFilter from "./HostelFilter";
-import { Filters } from "@/lib/validation";
+import { Filters } from "@/libs/validation";
 
 const HeroFilterHandler: React.FC = () => {
-  const handleApplyFilters = (newFilters: Filters) => {
-    console.log("Filters applied:", newFilters);
+  const handleApplyFilters = (data: Filters) => {
+    console.log("Filters applied:", data);
+    // Format the checkIn and checkOut as ISO date strings
+    const checkInDate = data.checkIn ? data.checkIn.toISOString() : "";
+    const checkOutDate = data.checkOut ? data.checkOut.toISOString() : "";
+
+    // Build the query parameters
+    const queryParams = new URLSearchParams({
+      location: data.location,
+      checkIn: checkInDate,
+      checkOut: checkOutDate,
+      adults: data.adults.toString(),
+      child: data.child.toString(),
+      rooms: data.rooms.toString(),
+    }).toString();
+
+    // Navigate to the search page with the filters as query parameters
+    // router.push(`/search?${queryParams}`);
+    console.log("queryParams", queryParams);
+    
   };
 
   return (
