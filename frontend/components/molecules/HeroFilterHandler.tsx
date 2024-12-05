@@ -1,12 +1,10 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
 import HostelFilter from "./HostelFilter";
 import { Filters } from "@/libs/validation";
 
 const HeroFilterHandler: React.FC = () => {
-  const router = useRouter()
   const handleApplyFilters = (data: Filters) => {
     console.log("Filters applied:", data);
     // Format the checkIn and checkOut as ISO date strings

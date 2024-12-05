@@ -7,7 +7,7 @@ import React, {
   useEffect,
 } from "react";
 import { validateToken } from "@/services/auth";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export interface User {
   userId: string;
@@ -27,22 +27,6 @@ const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-
-  // // Mutation for Token Validation
-  // const mutation = useMutation({
-  //   mutationFn: validateToken,
-  //   onSuccess: (data) => {
-  //     setUser(data); // Set user data on successful validation
-  //   },
-  //   onError: () => {
-  //     setUser(null); // Clear user data if validation fails
-  //   },
-  // });
-
-  // // Automatically validate token on component mount
-  // useEffect(() => {
-  //   mutation.mutate(); // Trigger token validation
-  // }, []); // Empty dependency array ensures this runs once on load
 
   // Using `useQuery` to validate the token and manage `user` state
   const { data, error } = useQuery({

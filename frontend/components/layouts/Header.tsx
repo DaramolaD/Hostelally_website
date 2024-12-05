@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/public/assets/icons/logo.svg";
 import { Button } from "../ui/button";
-import { AlignJustify, Settings, User, UserRound, X } from "lucide-react";
+import { AlignJustify, Settings, UserRound, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@/contexts/UserContext";
 import { getUserInitials } from "@/utils/helper";
