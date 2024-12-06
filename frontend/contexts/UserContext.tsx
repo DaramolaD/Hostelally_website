@@ -36,9 +36,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   });
   useEffect(() => {
     if (data) {
-      console.log("9030", data);
+      console.log("dataContet", data);
+      console.log("dataContetUser", data.user);
       
-      setUser(data); // Set user data when the query succeeds
+      setUser(data.user); // Set user data when the query succeeds
     }
     if (error) {
       setUser(null); // Clear user data when the query fails

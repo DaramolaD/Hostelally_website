@@ -16,7 +16,7 @@ import { Facebook } from "lucide-react";
 import { FieldError, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { signUp } from "@/services/auth";
 import { signUpSchema } from "@/libs/validation";
 
@@ -24,8 +24,6 @@ import { signUpSchema } from "@/libs/validation";
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const queryClient = useQueryClient();
 
   // Initialize react-hook-form
   const {
@@ -44,7 +42,6 @@ const SignUp = () => {
   const mutation = useMutation({
     mutationFn: signUp,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["signup"] });
       alert("Account created successfully!");
     },
     onError: (error: Record<string, FieldError>) => {
