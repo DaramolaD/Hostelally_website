@@ -24,7 +24,6 @@ export default function ResetPassword() {
   const {
     register,
     handleSubmit,
-    formState
   } = useForm({
     resolver: zodResolver(forGotPasswordSchema),
     defaultValues: {
