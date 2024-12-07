@@ -1,16 +1,23 @@
 import { z } from "zod";
 
-export const signUpSchema = z.object({
-  email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: z.string().min(6, "Password must be at least 6 characters"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "Passwords do not match",
-  path: ["confirmPassword"],
-});
+export const signUpSchema = z
+  .object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z
+      .string()
+      .min(6, "Password must be at least 6 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 export const signInSchema = z.object({
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters"),
+});
+export const forGotPasswordSchema = z.object({
+  email: z.string().email("Invalid email address"),
 });
 
 export const formSchema = z.object({
@@ -49,19 +56,44 @@ export interface Filters {
 
 export const FiltersSchema = z.object({
   location: z.string().nonempty("Location is required"),
-  checkIn: z.date().nullable().refine((date) => date !== null, {
-    message: "Check-In date is required",
-  }),
-  checkOut: z.date().nullable().refine((date) => date !== null, {
-    message: "Check-Out date is required",
-  }),
+  checkIn: z
+    .date()
+    .nullable()
+    .refine((date) => date !== null, {
+      message: "Check-In date is required",
+    }),
+  checkOut: z
+    .date()
+    .nullable()
+    .refine((date) => date !== null, {
+      message: "Check-Out date is required",
+    }),
   adults: z.number().min(1, "At least one adult is required"),
   child: z.number().min(0, "Children cannot be negative"),
   rooms: z.number().min(1, "At least one room is required"),
 });
 
-
 export interface HostelFilterProps {
   filters: Filters;
   onApplyFilters: (filters: Filters) => void;
 }
+
+export const userInfoSchema = z.object({
+  firstName: z.string().min(3, "firstName must be at least 3 characters"),
+  lastName: z.string().min(3, "lastName must be at least 3 characters"),
+});
+
+export const addHostel = z.object({
+  roomName: z.string().min(3, "Room Name must be at least 3 characters"),
+  city: z.string().min(3, "City must be at least 3 characters"),
+  country: z.string().min(3, "Country must be at least 3 characters"),
+  pricePerNight: z
+    .string()
+    .min(3, "PricePerNight must be at least 3 characters"),
+  description: z.string().min(3, "Description must be at least 3 characters"),
+  type: z.string().min(1, "Type is required"),
+  facilities: z
+    .array(z.string())
+    .min(1, "At least one facility must be selected"), // Facilities as an array of strings
+});
+

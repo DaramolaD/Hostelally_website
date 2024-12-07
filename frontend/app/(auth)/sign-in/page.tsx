@@ -42,9 +42,9 @@ export default function SignIn() {
 
   const mutation = useMutation({
     mutationFn: signIn,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       // Invalidate the query related to user authentication or token validation
-      queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       toast({
         title: "Success",
         description: data.message,
