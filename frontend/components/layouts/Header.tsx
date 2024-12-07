@@ -14,7 +14,7 @@ import {
   NavigationMenuItem,
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { logOut } from "@/services/auth";
 import { toast } from "@/hooks/use-toast";
 
@@ -34,9 +34,12 @@ const Header = () => {
   // Function to get initials from first and last name
   const userInitials = getUserInitials(user); // Now passing `user` that has `user.user`
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: logOut,
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
+      await queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       toast({
         title: "Success",
         description: data.message,
@@ -100,7 +103,7 @@ const Header = () => {
           {user ? (
             <NavigationMenu>
               <NavigationMenuItem className="!list-none">
-                <NavigationMenuTrigger className="w-fit px-2 rounded-full !size-10 !bg-black/50 !list-none">
+                <NavigationMenuTrigger className="w-fit px-2 rounded-full !size-10 !bg-black !text-white font-semibold !list-none">
                   {/* <div className="flex bg-black text-white size-10 justify-center items-center border rounded-full border-gray-500"> */}
                   {userInitials}
                   {/* </div> */}

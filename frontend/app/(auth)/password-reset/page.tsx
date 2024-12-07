@@ -12,8 +12,50 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "@/hooks/use-toast";
+import { forGotPassword } from "@/services/auth";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { forGotPasswordSchema } from "@/libs/validation";
+import { z } from "zod";
 
 export default function ResetPassword() {
+  const {
+    register,
+    handleSubmit,
+    formState
+  } = useForm({
+    resolver: zodResolver(forGotPasswordSchema),
+    defaultValues: {
+      email: "",
+    },
+  });
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: forGotPassword,
+    onSuccess: (data) => {
+      // Invalidate the query related to user authentication or token validation
+      queryClient.invalidateQueries({ queryKey: ["validateToken"] });
+      toast({
+        title: "Success",
+        description: data.message,
+        iconType: "success",
+      });
+    },
+    onError: (error: { response?: { data?: { message?: string } } }) => {
+      toast({
+        title: "Error",
+        description: error?.response?.data?.message || "Sign-in failed",
+        iconType: "error",
+      });
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof forGotPasswordSchema>) => {
+    mutation.mutate({ email: values.email });
+  };
   return (
     <section className="flex py-10 min-h-screen items-center justify-center">
       <Card className="mx-auto max-w-sm">
@@ -24,12 +66,13 @@ export default function ResetPassword() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4">
+          <form className="grid gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="grid gap-2">
               <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
                 type="email"
+                {...register("email")}
                 placeholder="Enter your email"
                 required
               />
@@ -43,7 +86,7 @@ export default function ResetPassword() {
                 Sign in
               </Link>
             </div>
-          </div>
+          </form>
         </CardContent>
       </Card>
     </section>
