@@ -1,19 +1,14 @@
 "use client";
+import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import AddDetailSection from "@/components/form/AddDetailSection";
 import AddFacilitiesSection from "@/components/form/AddFacilitiesSection";
 import AddTypeSection from "@/components/form/AddTypeSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { addHostel } from "@/libs/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Label } from "@radix-ui/react-label";
-import { Facebook } from "lucide-react";
-import Link from "next/link";
-import React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 const AddRoom = () => {
   const {
@@ -33,7 +28,7 @@ const AddRoom = () => {
       facilities: [], // Explicitly typed as `string[]`
     },
   });
-  
+
   const onSubmit = (values: z.infer<typeof addHostel>) => {
     console.log("values", values);
 
