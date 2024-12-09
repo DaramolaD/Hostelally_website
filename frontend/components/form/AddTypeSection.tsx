@@ -4,6 +4,7 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { FieldErrors, UseFormRegister, UseFormWatch } from "react-hook-form";
 import { addHostel } from "@/libs/validation";
+import { z } from "zod";
 
 type AddHostelFormValues = z.infer<typeof addHostel>;
 
