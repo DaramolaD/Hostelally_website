@@ -4,7 +4,7 @@ import { Button } from "../ui/button";
 
 const CtaSection = () => {
   return (
-    <section className="bg-[#E5E5EA] py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
+    <section className="bg-[#150a09] text-white py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
       <div className="container mx-auto flex-col md:flex-row flex gap-5 md:gap-11 justify-between md:items-center">
         <div className="flex flex-1 flex-col max-w-[800px] gap-4 items-start">
           <Heading level={2} size="md" align="left" weight="medium">
@@ -19,7 +19,7 @@ const CtaSection = () => {
 
         {/* Add margin-top to create space between text content and button container */}
         {/* <div className="flex flex-wrap items-center gap-4 md:justify-end"> */}
-          <Button size="lg" className="w-fit">
+          <Button size="lg" className="w-fit bg-white hover:bg-white text-black hover:shadow-sm hover:shadow-slate-50">
             Book Your Stay
           </Button>
         {/* </div> */}
