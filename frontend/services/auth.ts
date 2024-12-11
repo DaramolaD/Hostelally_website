@@ -1,5 +1,6 @@
 import axiosInstance from "@/libs/axiosInstance";
 import { API_ENDPOINTS } from "@/libs/endpoints";
+import axios from "axios";
 export const signUp = async (credentials: {
   email: string;
   password: string;
@@ -50,7 +51,19 @@ export const validateTokenMiddleWare = async (token: string | undefined) => {
     });
     return response.data;
   } catch (error) {
-    console.error("Error during token validation:", error.response?.data);
+
+    if (axios.isAxiosError(error)) {
+      // Axios error
+      console.error("Error during token validation:", error.response?.data);
+      console.error("Axios error during token validation:", {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+      });
+    } else {
+      // Non-Axios error
+      console.error("Unexpected error during token validation:", error);
+    }
     throw error;
   }
 };
