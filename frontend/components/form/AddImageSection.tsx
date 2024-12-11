@@ -27,7 +27,9 @@ const AddImageSection: React.FC<AddImageSectionProps> = ({
         className={`${errors.image ? "border-red-500" : ""}`}
       />
       {errors.image && (
-        <p className="text-red-500 text-sm">{errors.image.message}</p>
+        <p className="text-red-500 text-sm">
+          {typeof errors.image.message === "string" && errors.image.message}
+        </p>
       )}
     </div>
   );

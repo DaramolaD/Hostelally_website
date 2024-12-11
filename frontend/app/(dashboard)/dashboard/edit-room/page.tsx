@@ -22,7 +22,7 @@ const AddRoom = () => {
       roomName: "",
       city: "",
       country: "",
-      pricePerNight: "",
+      pricePerNight: 0,
       description: "",
       type: "",
       facilities: [], // Explicitly typed as `string[]`
