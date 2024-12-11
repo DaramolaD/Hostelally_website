@@ -9,7 +9,6 @@ import service_3 from "@/public/assets/imgs/service_3.png";
 import service_4 from "@/public/assets/imgs/service_4.png";
 import service_5 from "@/public/assets/imgs/service_5.png";
 import service_6 from "@/public/assets/imgs/service_6.png";
-import { MoveUpRight } from "lucide-react";
 
 const ServiceListingSection = () => {
   // State to simulate content loading
