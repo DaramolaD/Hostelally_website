@@ -24,7 +24,7 @@ const HostelImageGallery = () => {
     setIsDragging(false);
   };
   return (
-    <section className="bg-[#C7C7CC] py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
+    <section className="bg-[#E5E5EA] py-16 md:py-20 hover:shadow-md max-w-screen-2xl mx-auto">
       <div className="container mx-auto flex gap-11 justify-between items-center">
         <div
           ref={carouselRef}
@@ -35,11 +35,11 @@ const HostelImageGallery = () => {
           onMouseLeave={handleMouseUp}
           style={{ cursor: isDragging ? "grabbing" : "grab" }}
         >
-          <div className="flex bg-[#E5E5EA] min-w-[235px] h-[521px]"></div>
-          <div className="flex bg-[#E5E5EA] min-w-[235px] h-[481px]"></div>
-          <div className="flex bg-[#E5E5EA] min-w-[235px] h-[427px]"></div>
-          <div className="flex bg-[#E5E5EA] min-w-[235px] h-[357px]"></div>
-          <div className="flex bg-[#E5E5EA] min-w-[235px] h-[307px]"></div>
+          <div className="flex bg-[#C7C7CC] min-w-[235px] h-[521px]"></div>
+          <div className="flex bg-[#C7C7CC] min-w-[235px] h-[481px]"></div>
+          <div className="flex bg-[#C7C7CC] min-w-[235px] h-[427px]"></div>
+          <div className="flex bg-[#C7C7CC] min-w-[235px] h-[357px]"></div>
+          <div className="flex bg-[#C7C7CC] min-w-[235px] h-[307px]"></div>
         </div>
       </div>
     </section>

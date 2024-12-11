@@ -27,7 +27,7 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
           type="text"
           placeholder="Enter room name"
           {...register("roomName")}
-          className={errors.roomName ? "border-red-500" : ""}
+          className={`lg:py-5 ${errors.roomName ? "border-red-500" : ""}`}
         />
         {errors.roomName && (
           <span className="text-red-500 text-sm">
@@ -35,7 +35,7 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
           </span>
         )}
       </div>
-      <div className="grid gap-2 grid-cols-1 md:grid-cols-2">
+      <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
         <div className="flex flex-col gap-2">
           <Label htmlFor="city">City</Label>
           <div className="flex flex-col h-full flex-grow">
@@ -44,7 +44,7 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
               type="text"
               placeholder="Enter city"
               {...register("city")}
-              className={errors.city ? "border-red-500" : ""}
+              className={`lg:py-5 ${errors.city ? "border-red-500" : ""}`}
             />
             {errors.city && (
               <span className="text-red-500 text-sm">
@@ -61,7 +61,7 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
               type="text"
               placeholder="Enter country"
               {...register("country")}
-              className={errors.country ? "border-red-500" : ""}
+              className={`lg:py-5 ${errors.country ? "border-red-500" : ""}`}
             />
             {errors.country && (
               <span className="text-red-500 text-sm">
@@ -77,7 +77,7 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
           id="description"
           placeholder="Enter your room description"
           {...register("description")}
-          className={errors.description ? "border-red-500" : ""}
+          className={`h-40 lg:py-4 ${errors.description ? "border-red-500" : ""}`}
         />
         {errors.description && (
           <span className="text-red-500 text-sm">
@@ -91,8 +91,8 @@ const AddDetailSection: React.FC<AddDetailSectionProps> = ({
           id="pricePerNight"
           type="number"
           placeholder="Enter price per night"
-          {...register("pricePerNight")}
-          className={errors.pricePerNight ? "border-red-500" : ""}
+          {...register("pricePerNight", { valueAsNumber: true })}
+          className={`lg:py-5 ${errors.pricePerNight ? "border-red-500" : ""}`}
         />
         {errors.pricePerNight && (
           <span className="text-red-500 text-sm">

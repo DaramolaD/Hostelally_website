@@ -19,7 +19,7 @@ const FeatureSection = () => {
   }, []);
 
   return (
-    <section className="bg-gray-50 max-w-screen-2xl mx-auto pt-10 md:pt-0">
+    <section className="bg-white max-w-screen-2xl mx-auto pt-10 md:pt-0">
       <div className="container grid gap-9 relative w-full py-20 pt-40">
         <div className="flex flex-col text-left gap-2 md:gap-4">
           <Heading level={2} size="md" align="left" weight="medium">
@@ -40,10 +40,10 @@ const FeatureSection = () => {
           {isLoading ? (
             <div className="bg-gray-300 animate-pulse h-full rounded-xl p-6"></div>
           ) : (
-            <div className="relative h-full rounded-xl group overflow-hidden">
+            <div className="relative h-full rounded-xl overflow-hidden">
               <div className="relative flex items-center h-full">
                 {/* Content that appears on hover */}
-                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
                   <div className="flex flex-col gap-4 justify-between">
                     <h4 className="text-xl lg:text-2xl font-medium">
                       Skyline Hostel Branch
@@ -79,8 +79,8 @@ const FeatureSection = () => {
           ) : (
             <div className="flex flex-col gap-6 md:gap-4">
               {/* Second container */}
-              <div className="relative flex-1 rounded-xl group overflow-hidden">
-              <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="relative flex-1 rounded-xl overflow-hidden">
+              <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
                   <div className="flex flex-col gap-4 justify-between">
                     <h4 className="text-xl lg:text-2xl font-medium">
                       Skyline Hostel Branch
@@ -103,8 +103,8 @@ const FeatureSection = () => {
               </div>
 
               {/* Third container */}
-              <div className="relative flex-1 rounded-xl group overflow-hidden">
-                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="relative flex-1 rounded-xl overflow-hidden">
+                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
                   <div className="flex flex-col gap-4 justify-between">
                     <h4 className="text-xl lg:text-2xl font-medium">
                       Skyline Hostel Branch

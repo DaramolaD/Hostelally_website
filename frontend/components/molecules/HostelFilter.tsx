@@ -45,7 +45,7 @@ const HostelFilter: React.FC<HostelFilterProps> = ({ onApplyFilters }) => {
   };
 
   return (
-    <div className="container flex flex-col px-6 bg-white rounded-lg py-5 sm:flex-row flex-wrap justify-start md:justify-center gap-2 gap-y-4 w-fit">
+    <div className="container flex flex-col px-6 bg-white shadow-md rounded-lg py-5 sm:flex-row flex-wrap justify-start md:justify-center gap-2 gap-y-4 w-fit">
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleApply)}

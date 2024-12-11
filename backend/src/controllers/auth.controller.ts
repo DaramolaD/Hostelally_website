@@ -79,7 +79,7 @@ export const logIn = async (req: Request, res: Response) => {
   }
   const { email, password } = req.body;
   try {
-    const user = (await User.findOne({ email })) as UserDocument;
+    const user = await User.findOne({ email });
 
     if (!user) {
       res.status(400).json({ message: "Invalid credentials" });
@@ -290,6 +290,7 @@ export const checkAuth = async (req: Request, res: Response) => {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        isAdmin: user.isAdmin,
       },
     });
     return;

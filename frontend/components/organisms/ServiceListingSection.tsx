@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import Heading from "../atom/Header";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import executiveSuite from "@/public/assets/imgs/room_1.png";
-import room_2 from "@/public/assets/imgs/room_2.png";
-import room_3 from "@/public/assets/imgs/room_3.png";
-import room_4 from "@/public/assets/imgs/room_4.png";
-import room_5 from "@/public/assets/imgs/room_5.png";
-import room_6 from "@/public/assets/imgs/room_6.png";
+import service_1 from "@/public/assets/imgs/service_1.png";
+import service_2 from "@/public/assets/imgs/service_2.png";
+import service_3 from "@/public/assets/imgs/service_3.png";
+import service_4 from "@/public/assets/imgs/service_4.png";
+import service_5 from "@/public/assets/imgs/service_5.png";
+import service_6 from "@/public/assets/imgs/service_6.png";
 import { MoveUpRight } from "lucide-react";
 
-const HostelListingSection = () => {
+const ServiceListingSection = () => {
   // State to simulate content loading
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,57 +27,50 @@ const HostelListingSection = () => {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: executiveSuite,
+      img: service_1,
     },
     {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: room_2,
+      img: service_2,
     },
     {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: room_3,
+      img: service_3,
     },
     {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: room_4,
+      img: service_4,
     },
     {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: room_5,
+      img: service_5,
     },
     {
       roomTag: "Oasis Sandra Resort Homestay",
       price: "50",
       location: "Palm Jumeirah Dubia",
-      img: room_6,
+      img: service_6,
     },
   ];
 
-  // Sample data for room listing
-  const roomData = Array(6).fill({
-    title: "Room Title",
-    description: "Description of the room",
-  });
-
   return (
-    <section className="bg-white max-w-screen-2xl mx-auto">
+    <section className="bg-[#E5E5EA] max-w-screen-2xl mx-auto">
       <div className="container grid gap-9 relative w-full py-16 md:py-20 md:pt-40">
         <div className="flex flex-col text-left gap-2 md:gap-4">
           <Heading level={2} size="md" align="left" weight="medium">
-            Find Your Ideal Room
+          Service Features
           </Heading>
 
           <p className="text-base lg:text-xl text-start font-medium w-full max-w-[640px]">
-            Browse our range of hostel rooms and pick the perfect fit for your
-            stay. Click to explore your options!
+          Browse our range of hostel rooms and pick the perfect fit for your stay. Click to explore your options!
           </p>
         </div>
 
@@ -99,7 +92,7 @@ const HostelListingSection = () => {
                   key={index}
                   className="relative flex items-end rounded-xl h-[347px] group overflow-hidden"
                 >
-                  <div className="absolute bottom-0 flex items-center justify-between gap-5 md:gap-10 w-full h-[100px] p-6 bg-black/70 border border-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  {/* <div className="absolute bottom-0 flex items-center justify-between gap-5 md:gap-10 w-full h-[100px] p-6 bg-black/70 border border-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="flex flex-col text-white">
                       <h3 className="font-medium text-lg">{room.roomTag}</h3>
                       <p className="text-sm">{room.location}</p>
@@ -107,7 +100,7 @@ const HostelListingSection = () => {
                     <div className="flex items-center border h-fit group border-white hover:border-[#33270d] w-fit p-2 rounded-full">
                       <MoveUpRight className="text-white size-6 lg:size-7 group-hover:text-[#33270d]" />
                     </div>
-                  </div>
+                  </div> */}
                   <Image
                     src={room.img}
                     alt="roomImg"
@@ -127,4 +120,4 @@ const HostelListingSection = () => {
   );
 };
 
-export default HostelListingSection;
+export default ServiceListingSection;
