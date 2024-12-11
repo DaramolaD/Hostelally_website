@@ -88,12 +88,39 @@ export const addHostel = z.object({
   city: z.string().min(3, "City must be at least 3 characters"),
   country: z.string().min(3, "Country must be at least 3 characters"),
   pricePerNight: z
-    .string()
-    .min(3, "PricePerNight must be at least 3 characters"),
+    .number()
+    .positive({ message: "Price rate must be a positive number." }),
   description: z.string().min(3, "Description must be at least 3 characters"),
   type: z.string().min(1, "Type is required"),
   facilities: z
     .array(z.string())
-    .min(1, "At least one facility must be selected"), // Facilities as an array of strings
+    .min(1, "At least one facility must be selected"),
+  adultCount: z
+    .number()
+    .min(1, { message: "At least 1 adult is required." })
+    .max(10, { message: "Maximum 10 adults allowed." }),
+  childCount: z
+    .number()
+    .min(0, { message: "Children count cannot be negative." })
+    .max(10, { message: "Maximum 10 children allowed." }),
+  image: z
+    .any()
+    .refine(
+      (files) => files instanceof FileList && files.length > 0,
+      "At least one image is required."
+    ),
 });
-
+export const addGuest = z.object({
+  adultCount: z
+    .number({
+      required_error: "This field is required",
+      invalid_type_error: "Adult count must be a number",
+    })
+    .min(1, "Adults count must be at least 1"),
+  childCount: z
+    .number({
+      required_error: "This field is required",
+      invalid_type_error: "Children count must be a number",
+    })
+    .min(0, "Children count cannot be negative"),
+});

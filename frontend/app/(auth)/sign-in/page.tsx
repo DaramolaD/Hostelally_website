@@ -12,7 +12,6 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Facebook } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signInSchema } from "@/libs/validation";
@@ -21,6 +20,9 @@ import { signIn } from "@/services/auth";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import fbImg from "@/public/assets/imgs/facebook.png";
+import googleImg from "@/public/assets/imgs/google.png";
+import Image from "next/image";
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -124,10 +126,18 @@ export default function SignIn() {
             </div>
             <div className="flex items-center gap-2 w-full">
               <Button variant="outline" className="w-full">
-                <Facebook />
+                <Image
+                  src={fbImg}
+                  alt="facebookIcon"
+                  className="w-auto h-full"
+                />
               </Button>
               <Button variant="outline" className="w-full">
-                <Facebook />
+                <Image
+                  src={googleImg}
+                  alt="facebookIcon"
+                  className="w-auto h-full"
+                />
               </Button>
             </div>
           </form>

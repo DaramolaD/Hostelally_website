@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "@/hooks/use-toast";
 import { forGotPassword } from "@/services/auth";
 import { useForm } from "react-hook-form";
@@ -30,13 +30,10 @@ export default function ResetPassword() {
       email: "",
     },
   });
-  const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: forGotPassword,
     onSuccess: (data) => {
-      // Invalidate the query related to user authentication or token validation
-      queryClient.invalidateQueries({ queryKey: ["validateToken"] });
       toast({
         title: "Success",
         description: data.message,

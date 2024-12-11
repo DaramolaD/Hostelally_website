@@ -49,7 +49,7 @@ const TestimoniesSection = () => {
   };
 
   return (
-    <section className="bg-[#E5E5EA] max-w-screen-2xl mx-auto py-16 md:py-20 md:pt-40 hover:shadow-md">
+    <section className="bg-white max-w-screen-2xl mx-auto py-16 md:py-20 md:pt-40 hover:shadow-md">
       <div className="container grid gap-11">
         {/* Section Header */}
         <div className="flex flex-col max-w-[820px] mx-auto gap-2 items-start md:items-center">
@@ -57,7 +57,7 @@ const TestimoniesSection = () => {
             Real Stories, Real Stays
           </Heading>
           <p className="text-base lg:text-xl font-medium text-start md:text-center">
-            Hear from travelers, teams, and groups who&pos;ve found their perfect
+            Hear from travelers, teams, and groups who&apos;ve found their perfect
             stay with us. From solo adventurers to company retreats, see how our
             hostels make every trip a little more memorable.
           </p>

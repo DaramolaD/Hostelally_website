@@ -39,3 +39,18 @@ export const fetchCurrentUser = async () => {
   const response = await axiosInstance.get("/auth/me");
   return response.data;
 };
+
+export const validateTokenMiddleWare = async (token: string | undefined) => {
+  try {
+    const response = await axiosInstance.get(API_ENDPOINTS.AUTH.CHECKAUTH, {
+      headers: {
+        "Content-Type": "application/json",
+        Cookie: `auth_token=${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error during token validation:", error.response?.data);
+    throw error;
+  }
+};

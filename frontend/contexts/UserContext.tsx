@@ -31,14 +31,11 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Using `useQuery` to validate the token and manage `user` state
   const { data, error } = useQuery({
     queryKey: ["validateToken"],
-    queryFn: validateToken, // Your API function for token validation
+    queryFn: validateToken,
     retry: false, // Disable retries if validation fails
   });
   useEffect(() => {
     if (data) {
-      console.log("dataContet", data);
-      console.log("dataContetUser", data.user);
-      
       setUser(data.user); // Set user data when the query succeeds
     }
     if (error) {

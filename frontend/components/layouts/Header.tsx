@@ -82,7 +82,7 @@ const Header = () => {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Main navigation" className="hidden md:flex gap-6">
+        <nav aria-label="Main navigation" className="hidden lg:flex gap-3 lg:gap-6">
           {navLinks.map(({ label, href }, index) => (
             <Link
               key={index}
@@ -95,7 +95,7 @@ const Header = () => {
         </nav>
 
         {/* Desktop CTA Buttons */}
-        <div className="hidden md:flex gap-2">
+        <div className="hidden lg:flex gap-2">
           <Button variant="outline" onClick={() => router.push("/contact-us")}>
             Contact-Us
           </Button>
@@ -137,7 +137,7 @@ const Header = () => {
           ) : (
             <Link
               href="/sign-in"
-              className="h-10 px-4 py-2 bg-primary text-primary-foreground shadow hover:bg-primary/90 flex items-center rounded-md text-sm"
+              className="h-10 px-4 py-2 bg-primary text-center text-primary-foreground shadow hover:bg-primary/90 flex items-center rounded-md text-sm"
             >
               SignIn / Register
             </Link>
@@ -148,7 +148,7 @@ const Header = () => {
         <button
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Open menu"
-          className="flex md:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-black"
+          className="flex lg:hidden hover:bg-white rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-black"
         >
           <AlignJustify size={24} />
         </button>
