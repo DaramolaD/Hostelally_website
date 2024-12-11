@@ -5,7 +5,16 @@ import Image from "next/image";
 import Skyline_Branch_1 from "@/public/assets/imgs/Skyline_Branch_1.png";
 import Skyline_Branch_2 from "@/public/assets/imgs/Skyline_Branch_2.png";
 import Skyline_Branch_3 from "@/public/assets/imgs/Skyline_Branch_3.png";
-import { MoveUpRight } from "lucide-react";
+import {
+  BathIcon,
+  BedDoubleIcon,
+  BedSingleIcon,
+  Building2Icon,
+  MapPinIcon,
+  ShowerHeadIcon,
+  SofaIcon,
+} from "lucide-react";
+import Link from "next/link";
 
 const FeatureSection = () => {
   // State to simulate content loading
@@ -17,6 +26,38 @@ const FeatureSection = () => {
       setIsLoading(false); // Stop loading after 3 seconds
     }, 3000);
   }, []);
+
+  const displayRoom = [
+    {
+      roomTag: "Oasis Sandra Resort Homestay",
+      price: "500",
+      location: "Palm Jumeirah Dubia",
+      img: Skyline_Branch_2,
+      link: "",
+      doublebed: "2",
+      bath: "1",
+      sofa: "1",
+    },
+    {
+      roomTag: "Oasis Sandra Resort Homestay",
+      price: "50",
+      location: "Palm Jumeirah Dubia",
+      img: Skyline_Branch_1,
+      link: "",
+      doublebed: "1",
+      shadower: "1",
+    },
+    {
+      roomTag: "Oasis Sandra Resort Homestay",
+      price: "50",
+      location: "Palm Jumeirah Dubia",
+      img: Skyline_Branch_3,
+      link: "",
+      bed: "1",
+      bath: "1",
+      sofa: "1"
+    },
+  ];
 
   return (
     <section className="bg-white max-w-screen-2xl mx-auto pt-10 md:pt-0">
@@ -35,98 +76,94 @@ const FeatureSection = () => {
         </div>
 
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-[59%_41%] gap-6 md:gap-4">
+        <div className="grid grid-cols-1 md:max-h-[700px] md:grid-cols-[59%_41%] md:grid-rows-[repeat(2,_minmax(0,_1fr))] gap-6 md:gap-4">
           {/* First container skeleton */}
           {isLoading ? (
             <div className="bg-gray-300 animate-pulse h-full rounded-xl p-6"></div>
           ) : (
-            <div className="relative h-full rounded-xl overflow-hidden">
-              <div className="relative flex items-center h-full">
-                {/* Content that appears on hover */}
-                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
-                  <div className="flex flex-col gap-4 justify-between">
-                    <h4 className="text-xl lg:text-2xl font-medium">
-                      Skyline Hostel Branch
-                    </h4>
-                    <p className="text-sm lg:text-xl font-light">
-                      Rooftop Lounge
-                    </p>
+            displayRoom.map((room, index) => (
+              <div
+                key={index}
+                className={`relative group h-full min-h-40 md:min-h-80 rounded-xl overflow-hidden ${
+                  index === 0 ? "md:row-span-2" : ""
+                }`}
+              >
+                <div className="relative flex items-center h-full">
+                  {/* Content that appears on hover */}
+                  {/* Hover Overlay */}
+                  <div className="absolute bottom-0 flex flex-col items-end justify-between w-full h-fit px-4 py-4 bg-black bg-opacity-60 backdrop-blur-[10px] transition-opacity opacity-0 group-hover:opacity-100 duration-300">
+                    <div className="flex flex-col w-full gap-2 text-white">
+                      <div className="flex sm:items-center justify-between">
+                        <div className="flex gap-4 gap-y-0 flex-wrap justify-between">
+                          <p className="text-2xl">
+                            ${room.price}
+                            <span className="text-sm"> / per night</span>
+                          </p>
+                          <div className="flex gap-1 md:gap-2 items-center">
+                            {room.bed && (
+                              <div className="flex gap-[2px] items-center">
+                                <span className="text-sm">
+                                  {room.bed}
+                                </span>
+                                <BedSingleIcon className="text-white size-4" />
+                              </div>
+                            )}
+                            {room.doublebed && (
+                              <div className="flex gap-[2px] items-center">
+                                <span className="text-sm">
+                                  {room.doublebed}
+                                </span>
+                                <BedDoubleIcon className="text-white size-4" />
+                              </div>
+                            )}
+                            {room.sofa && (
+                              <div className="flex gap-[2px] items-center">
+                                <SofaIcon className="text-white size-4" />
+                              </div>
+                            )}
+                            {room.bath && (
+                              <div className="flex gap-[2px] items-center">
+                                <BathIcon className="text-white size-4" />
+                              </div>
+                            )}
+                            {room.shadower && (
+                              <div className="flex gap-[2px] items-center">
+                                <ShowerHeadIcon className="text-white size-4" />
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center p-1 px-5 border rounded-md h-fit border-white w-fit">
+                          <Link href={room.link} className="text-sm">
+                            View
+                          </Link>
+                        </div>
+                      </div>
+                      <div className="flex gap-1 items-center">
+                        <Building2Icon className="text-white size-4" />
+                        <h3 className="font-medium text-sm !leading-normal">
+                          {room.roomTag}
+                        </h3>
+                      </div>
+                      <div className="flex gap-1 items-center">
+                        <MapPinIcon className="text-white size-4" />
+                        <p className="text-xs">{room.location}</p>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
-                    <MoveUpRight className="text-white size-6 lg:size-7" />
-                  </div>
+
+                  {/* Image */}
+                  <Image
+                    src={room.img}
+                    width={696}
+                    height={696}
+                    alt="branchRoomImg"
+                    className="object-cover w-full rounded-xl h-full" // Ensures the image fills the container while maintaining aspect ratio
+                    // sizes="(max-width: 768px) 100vw, 59vw" // Dynamically adjusts image size based on screen width
+                  />
                 </div>
-
-                {/* Image */}
-                <Image
-                  src={Skyline_Branch_1}
-                  width={696}
-                  height={696}
-                  alt="branchRoomImg"
-                  className="object-cover w-full rounded-xl max-sm:h-[400px] md:max-h-[696px]" // Ensures the image fills the container while maintaining aspect ratio
-                  sizes="(max-width: 768px) 100vw, 59vw" // Dynamically adjusts image size based on screen width
-                />
               </div>
-            </div>
-          )}
-
-          {/* Second container skeleton */}
-          {isLoading ? (
-            <div className="flex flex-col gap-6 md:gap-4">
-              <div className="bg-gray-300 animate-pulse h-full rounded-xl p-6"></div>
-              <div className="bg-gray-300 animate-pulse h-full rounded-xl p-6"></div>
-            </div>
-          ) : (
-            <div className="flex flex-col gap-6 md:gap-4">
-              {/* Second container */}
-              <div className="relative flex-1 rounded-xl overflow-hidden">
-              <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
-                  <div className="flex flex-col gap-4 justify-between">
-                    <h4 className="text-xl lg:text-2xl font-medium">
-                      Skyline Hostel Branch
-                    </h4>
-                    <p className="text-sm lg:text-xl font-light">
-                      Rooftop Lounge
-                    </p>
-                  </div>
-                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
-                    <MoveUpRight className="text-white size-6 lg:size-7" />
-                  </div>
-                </div>
-                <Image
-                  src={Skyline_Branch_2}
-                  fill
-                  alt="branchRoomImg"
-                  className="object-cover" // Ensures the image fills the container while maintaining aspect ratio
-                  sizes="(max-width: 768px) 100vw, 59vw" // Dynamically adjusts image size based on screen width
-                />
-              </div>
-
-              {/* Third container */}
-              <div className="relative flex-1 rounded-xl overflow-hidden">
-                <div className="absolute bottom-0 w-full justify-between items-center flex gap-4 lg:gap-4 text-white bg-black/70 border border-black/40 z-10 p-3 transition-opacity duration-300">
-                  <div className="flex flex-col gap-4 justify-between">
-                    <h4 className="text-xl lg:text-2xl font-medium">
-                      Skyline Hostel Branch
-                    </h4>
-                    <p className="text-sm lg:text-xl font-light">
-                      Rooftop Lounge
-                    </p>
-                  </div>
-                  <div className="flex items-center border border-white w-fit p-2 rounded-full">
-                    <MoveUpRight className="text-white size-6 lg:size-7" />
-                  </div>
-                </div>
-
-                <Image
-                  src={Skyline_Branch_3}
-                  fill
-                  alt="branchRoomImg"
-                  className="object-cover" // Ensures the image fills the container while maintaining aspect ratio
-                  sizes="(max-width: 768px) 100vw, 59vw" // Dynamically adjusts image size based on screen width
-                />
-              </div>
-            </div>
+            ))
           )}
         </div>
       </div>
