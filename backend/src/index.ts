@@ -13,6 +13,8 @@ const app = express();
 app.use(express.json()); // allow us to parse incoming requests: req.body
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()) // allow us to parse incoming cookies: req.cookies
+// app.use(morgan("tiny")) // check the use for this
+app.disable("x-powered-by")  // less hackers know about the stack
 
 // Enable CORS
 app.use(cors({
