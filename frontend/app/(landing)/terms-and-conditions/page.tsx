@@ -5,11 +5,11 @@ const TermsConditionPage = () => {
   return (
     <section className="bg-[#E5E5EA] max-w-screen-2xl mx-auto">
       <div className="container relative w-full h-fit">
-        <div className="flex flex-col w-full max-w-[735px] gap-2 py-40 pt-44">
-          <h2 className="text-3xl font-semibold">Terms and Conditions</h2>
+        <div className="flex flex-col w-full gap-2 py-40 pt-44">
+          <h2 className="text-3xl font-semibold text-center">Terms and Conditions</h2>
           <p>{content.termsAndConditions.introduction}</p>
 
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.bookingPolicy.title}
           </h3>
           <ul>
@@ -22,7 +22,7 @@ const TermsConditionPage = () => {
             )}
           </ul>
 
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.cancellationPolicy.title}
           </h3>
           <ul>
@@ -34,7 +34,7 @@ const TermsConditionPage = () => {
               )
             )}
           </ul>
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.checkInOutPolicy.title}
           </h3>
           <ul>
@@ -46,7 +46,7 @@ const TermsConditionPage = () => {
               )
             )}
           </ul>
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.behaviorPolicy.title}
           </h3>
           <ul>
@@ -58,7 +58,7 @@ const TermsConditionPage = () => {
               )
             )}
           </ul>
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.liability.title}
           </h3>
           <ul>
@@ -68,7 +68,7 @@ const TermsConditionPage = () => {
               </li>
             ))}
           </ul>
-          <h3 className="text-xl font-semibold">
+          <h3 className="text-xl font-semibold mb-1">
             {content.termsAndConditions.modification.title}
           </h3>
           <ul>

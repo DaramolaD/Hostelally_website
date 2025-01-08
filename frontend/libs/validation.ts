@@ -109,6 +109,14 @@ export const addHostel = z.object({
       (files) => files instanceof FileList && files.length > 0,
       "At least one image is required."
     ),
+
+    // Check the below out first
+    // image: z
+    // .any()
+    // .refine(
+    //   (files): files is FileList => files instanceof FileList && files.length > 0,
+    //   { message: "At least one image is required." }
+    // ),
 });
 export const addGuest = z.object({
   adultCount: z
