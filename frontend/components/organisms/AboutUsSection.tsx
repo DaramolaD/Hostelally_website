@@ -9,7 +9,7 @@ const AboutUsSection = () => {
     <section className="py-10 pb-20 bg-[#150a09] text-white max-w-screen-2xl mx-auto">
       <div className="container grid grid-cols-1 md:grid-cols-2 gap-24 md:gap-5 w-full py-10 md:py-20 md:pt-20">
         {/* Text Content: Comes first on mobile and second on larger screens */}
-        <div className="flex flex-col gap-5 order-1 md:order-2 rounded-lg h-full py-7 px-10">
+        <div className="flex flex-col gap-5 order-1 md:order-2 rounded-lg h-full py-7 md:px-10">
           <div className="flex flex-col gap-2">
             <Heading level={2} size="md" align="left" weight="medium">
               About Us
