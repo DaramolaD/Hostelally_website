@@ -25,14 +25,14 @@ const Header = () => {
 
   const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "" },
-    { label: "Locations", href: "" },
-    { label: "Services", href: "" },
-    { label: "Blog", href: "" },
+    { label: "About Us", href: "/about" },
+    { label: "Locations", href: "/locations" },
+    { label: "Services", href: "/sevices" },
+    { label: "Blog", href: "/blog" },
   ];
 
   // Function to get initials from first and last name
-  const userInitials = getUserInitials(user); // Now passing `user` that has `user.user`
+  const userInitials = user ? getUserInitials(user) : "User"; // Now passing `user` that has `user.user`
 
   const queryClient = useQueryClient();
 

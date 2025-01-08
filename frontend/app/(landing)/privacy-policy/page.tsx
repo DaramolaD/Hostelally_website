@@ -5,9 +5,9 @@ const PrivacyPage = () => {
   return (
     <section className="bg-[#E5E5EA] max-w-screen-2xl mx-auto">
       <div className="container relative w-full h-fit">
-        <div className="flex flex-col w-full max-w-[735px] gap-2 py-40 pt-44">
-          <h2 className="text-3xl font-semibold">Privacy Page</h2>
-          <p>{content.privacyPolicy.introduction}</p>
+        <div className="flex flex-col w-full gap-2 py-40 pt-44">
+          <h2 className="text-3xl font-semibold text-center">Privacy Page</h2>
+          <p className="mb-5">{content.privacyPolicy.introduction}</p>
 
           <h3 className="text-xl font-semibold">
             {content.privacyPolicy.useOfData.title}
